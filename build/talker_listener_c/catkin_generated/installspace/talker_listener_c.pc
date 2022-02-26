@@ -1,0 +1,8 @@
+prefix=/home/vvdkhoa/catkin_ws/install
+
+Name: talker_listener_c
+Description: Description of talker_listener_c
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
