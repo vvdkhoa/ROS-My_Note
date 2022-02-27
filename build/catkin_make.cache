@@ -1,2 +1,2 @@
-talker_listener_cpp:talker_listener_py
+control_turtlesim:talker_listener_cpp:talker_listener_py
 -DCATKIN_DEVEL_PREFIX=/home/vvdkhoa/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/vvdkhoa/catkin_ws/install -G Unix Makefiles
