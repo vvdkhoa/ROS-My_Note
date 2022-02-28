@@ -55,6 +55,7 @@ CMAKE_BINARY_DIR = /home/vvdkhoa/catkin_ws/build
 # The main recursive "all" target.
 all: gtest/all
 all: control_turtlesim/all
+all: custom_message_py/all
 all: talker_listener_cpp/all
 all: talker_listener_py/all
 
@@ -63,6 +64,7 @@ all: talker_listener_py/all
 # The main recursive "preinstall" target.
 preinstall: gtest/preinstall
 preinstall: control_turtlesim/preinstall
+preinstall: custom_message_py/preinstall
 preinstall: talker_listener_cpp/preinstall
 preinstall: talker_listener_py/preinstall
 
@@ -76,6 +78,7 @@ clean: CMakeFiles/tests.dir/clean
 clean: CMakeFiles/download_extra_data.dir/clean
 clean: gtest/clean
 clean: control_turtlesim/clean
+clean: custom_message_py/clean
 clean: talker_listener_cpp/clean
 clean: talker_listener_py/clean
 
@@ -112,6 +115,24 @@ control_turtlesim/clean: control_turtlesim/CMakeFiles/roscpp_generate_messages_l
 control_turtlesim/clean: control_turtlesim/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/clean
 
 .PHONY : control_turtlesim/clean
+
+#=============================================================================
+# Directory level rules for directory custom_message_py
+
+# Recursive "all" directory target.
+custom_message_py/all:
+
+.PHONY : custom_message_py/all
+
+# Recursive "preinstall" directory target.
+custom_message_py/preinstall:
+
+.PHONY : custom_message_py/preinstall
+
+# Recursive "clean" directory target.
+custom_message_py/clean:
+
+.PHONY : custom_message_py/clean
 
 #=============================================================================
 # Directory level rules for directory gtest

@@ -1,48 +1,38 @@
 #!/usr/bin/env python
-# license removed for brevity
 import rospy
+
 # from std_msgs.msg import String
-
+# For PUB
 from geometry_msgs.msg import Twist
+# For SUB
+from turtlesim.msg import Pose
 
-# Subscriber for the topic that will show the location of the robot
-
-# Publisher to the topic that will make the robot move
-
-# What is the topic of the position
-
-# What is the topic that make the robot move
-
+def chatter_callback(message):
+    show_msg = "\nx: {}\ny: {}\ntheta: {}\nv_liner: {}\nv_angular: {}".format(
+        message.x, message.y, message.theta, message.linear_velocity, message.angular_velocity)
+    rospy.loginfo(rospy.get_caller_id() + show_msg)
 
 def move():
-    #create a new publisher. we specify the topic name (chatter), then type of message then the queue size
+    # Create a new publisher
     pub = rospy.Publisher('/turtle1/cmd_vel', Twist, queue_size=10)
-    #we need to initialize the node
-    # In ROS, nodes are uniquely named. If two nodes with the same
-    # node are launched, the previous one is kicked off. The
-    # anonymous=True flag means that rospy will choose a unique
-    # name for our 'talker' node (node name: talker)
     rospy.init_node('talker', anonymous=True)
-    #set the loop rate
-    rate = rospy.Rate(10) # 1hz
-    #keep publishing until a Ctrl-C is pressed
-    i = 0
+    rate = rospy.Rate(1) # 1hz loop rate
+
+    # Subscriber for the topic that will show the location of the robot
+    rospy.Subscriber("/turtle1/pose", Pose, chatter_callback)
+
     while not rospy.is_shutdown():
-
+        # Publisher to the topic that will make the robot move
         twist = Twist()
-        twist.linear.x = 1.0
-
-        # rospy.loginfo(hello_str)
+        twist.angular.x = 0.1
+        twist.linear.x = 0.1
+        twist.linear.y = 0.1
         pub.publish(twist)
+
         rate.sleep()
-        i=i+1
 
 if __name__ == '__main__':
     try:
         move()
     except rospy.ROSInterruptException:
         pass
-
-
-
-

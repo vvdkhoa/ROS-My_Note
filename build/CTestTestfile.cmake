@@ -6,5 +6,6 @@
 # testing this directory and lists subdirectories to be tested as well.
 subdirs("gtest")
 subdirs("control_turtlesim")
+subdirs("custom_message_py")
 subdirs("talker_listener_cpp")
 subdirs("talker_listener_py")

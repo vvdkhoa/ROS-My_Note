@@ -57,6 +57,13 @@
 /home/vvdkhoa/catkin_ws/build/control_turtlesim/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir
 /home/vvdkhoa/catkin_ws/build/control_turtlesim/CMakeFiles/roscpp_generate_messages_lisp.dir
 /home/vvdkhoa/catkin_ws/build/control_turtlesim/CMakeFiles/rosgraph_msgs_generate_messages_py.dir
+/home/vvdkhoa/catkin_ws/build/custom_message_py/CMakeFiles/install/strip.dir
+/home/vvdkhoa/catkin_ws/build/custom_message_py/CMakeFiles/install/local.dir
+/home/vvdkhoa/catkin_ws/build/custom_message_py/CMakeFiles/install.dir
+/home/vvdkhoa/catkin_ws/build/custom_message_py/CMakeFiles/list_install_components.dir
+/home/vvdkhoa/catkin_ws/build/custom_message_py/CMakeFiles/rebuild_cache.dir
+/home/vvdkhoa/catkin_ws/build/custom_message_py/CMakeFiles/edit_cache.dir
+/home/vvdkhoa/catkin_ws/build/custom_message_py/CMakeFiles/test.dir
 /home/vvdkhoa/catkin_ws/build/talker_listener_cpp/CMakeFiles/install/strip.dir
 /home/vvdkhoa/catkin_ws/build/talker_listener_cpp/CMakeFiles/install/local.dir
 /home/vvdkhoa/catkin_ws/build/talker_listener_cpp/CMakeFiles/install.dir
