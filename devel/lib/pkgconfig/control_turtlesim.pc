@@ -1,8 +1,0 @@
-prefix=/home/vvdkhoa/catkin_ws/devel
-
-Name: control_turtlesim
-Description: Description of control_turtlesim
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

@@ -1,8 +1,0 @@
-prefix=/home/vvdkhoa/catkin_ws/devel
-
-Name: talker_listener_py
-Description: Description of talker_listener_py
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 
