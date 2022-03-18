@@ -205,9 +205,9 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
-catkin_install_python(PROGRAMS scripts/request_move.py scripts/move_straight.py
+catkin_install_python(PROGRAMS scripts/request_move.py scripts/move_straight.py scripts/move_rotate.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION} 
 ) 
 
-add_executable(move_straight_cpp src/move_straight.cpp) # relative path den source code 
-target_link_libraries (move_straight_cpp ${catkin_LIBRARIES}) 
+add_executable(move_cpp src/move.cpp) # relative path den source code 
+target_link_libraries (move_cpp ${catkin_LIBRARIES})
