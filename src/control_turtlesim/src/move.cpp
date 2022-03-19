@@ -10,6 +10,8 @@
 // rosmsg show geometry_msgs/Twist
 
 
+turtlesim::Pose turtlesim_pose;
+
 // Move Strain
 void move(ros::Publisher velocity_publisher, double speed, double distance, bool isForward)
 {
@@ -36,6 +38,7 @@ void move(ros::Publisher velocity_publisher, double speed, double distance, bool
     velocity_publisher.publish(vel_msg);
 
 }
+
 
 // Rotate
 void rotate(ros::Publisher velocity_publisher, double angular_speed_degree, 
@@ -72,6 +75,60 @@ void rotate(ros::Publisher velocity_publisher, double angular_speed_degree,
 
 }
 
+
+// Go to goal
+
+double getDistance(double x1, double y1, double x2, double y2){
+    return sqrt( pow((x1-x2), 2) + pow( y1-y2, 2) );
+}
+
+void go_to_goal(ros::Publisher velocity_publisher)
+{   
+    // Get input from user
+    turtlesim::Pose goal_pose;
+    double distance_tolerance;
+    std::cout << "Goal x: ";
+    std::cin >> goal_pose.x;
+    std::cout << "Goal y: ";
+    std::cin >> goal_pose.y;
+    std::cout << "Distance torelance: ";
+    std::cin >> distance_tolerance;
+
+    // Create message obj
+    geometry_msgs::Twist vel_msg;
+
+    ros::Rate loop_rate(100);
+    double E = 0.0;
+
+    do {
+        double Kp = 1.0;
+        double Ki = 0.02;
+        double e = getDistance(turtlesim_pose.x, turtlesim_pose.y, goal_pose.x, goal_pose.y);
+        double E = E+e;
+
+        vel_msg.linear.x = (Kp*e);
+        vel_msg.linear.y = 0;
+        vel_msg.linear.z = 0;
+
+        vel_msg.angular.x = 0;
+        vel_msg.angular.y = 0;
+        vel_msg.angular.z = 4*( atan2(goal_pose.y-turtlesim_pose.y, goal_pose.x-turtlesim_pose.x) - turtlesim_pose.theta);
+
+        velocity_publisher.publish(vel_msg);
+
+        ros::spinOnce();
+        loop_rate.sleep();
+
+    } while( getDistance(turtlesim_pose.x, turtlesim_pose.y, goal_pose.x, goal_pose.y)>distance_tolerance );
+
+    std::cout << "End move goal";
+    vel_msg.linear.x = 0;
+    vel_msg.angular.z = 0;
+    velocity_publisher.publish(vel_msg);
+
+}
+
+
 // Call back function
 void poseCallback(const turtlesim::Pose::ConstPtr &pose_message){
 
@@ -83,7 +140,13 @@ void poseCallback(const turtlesim::Pose::ConstPtr &pose_message){
     ROS_INFO("y: %f", y );
     ROS_INFO("theta: %f", theta );
 
+    // Save to global scope turtlesim_pose
+    turtlesim_pose.x=pose_message->x;
+	turtlesim_pose.y=pose_message->y;
+	turtlesim_pose.theta=pose_message->theta;
+
 }
+
 
 int main(int argc, char **argv)
 {
@@ -102,10 +165,13 @@ int main(int argc, char **argv)
 
     // Test code
     // Move Strain
-    move(velocity_publisher, 1, 2, true);
+    // move(velocity_publisher, 1, 2, true);
 
     // Rotate
-    rotate(velocity_publisher, 10, 90, true);
+    // rotate(velocity_publisher, 10, 90, true);
+
+    // Go to goal
+    go_to_goal(velocity_publisher);
 
     // Wait
     ros::Rate loop_rate(0.5);

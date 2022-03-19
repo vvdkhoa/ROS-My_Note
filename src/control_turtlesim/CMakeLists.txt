@@ -205,7 +205,8 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
-catkin_install_python(PROGRAMS scripts/request_move.py scripts/move_straight.py scripts/move_rotate.py
+catkin_install_python(
+  PROGRAMS scripts/request_move.py scripts/move_straight.py scripts/move_rotate.py scripts/move_go_to_goal.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION} 
 ) 
 
