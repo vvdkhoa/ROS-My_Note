@@ -1,0 +1,4 @@
+<launch>
+    <node name="turtlesim" pkg="turtlesim" type="turtlesim_node" />
+    <node name="go_to_goal" pkg="control_turtlesim" type="move_straight.py" />
+</launch>
