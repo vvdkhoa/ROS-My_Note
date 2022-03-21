@@ -1,0 +1,3 @@
+<launch>
+    <include file="$(find control_turtlesim)/launch/turtlesim_move_from_launch_param.launch" /> 
+</launch>

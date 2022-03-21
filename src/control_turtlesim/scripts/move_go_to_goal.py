@@ -44,14 +44,20 @@ class TurtleBot():
         steering_angle = atan2(goal_pose.y - self.pose.y, goal_pose.x - self.pose.x)
         return constant * (steering_angle -self.pose.theta)
         
-    def move_to_goal(self):
+    def move_to_goal(self, x_goal=None, y_goal=None, distance_tolerance=None):
         """Moves the turtle to the goal."""
         goal_pose = Pose()
 
-        # Get input from cmd
-        goal_pose.x = float( input("Set your x goal: ") )
-        goal_pose.y = float( input("Set your y goal: ") )
-        distance_tolerance = float( input("Set you torelance: ") )
+        # Get input from cmd when using move_to_goal()
+        if not (x_goal and y_goal and distance_tolerance):
+            goal_pose.x = float( input("Set your x goal: ") )
+            goal_pose.y = float( input("Set your y goal: ") )
+            distance_tolerance = float( input("Set you torelance: ") )
+        # When using  move_to_goal (x_goal, y_goal, distance_tolerance), get param from launch file
+        else:
+            goal_pose.x = x_goal
+            goal_pose.y = y_goal
+            distance_tolerance = distance_tolerance
 
         vel_msg = Twist()
 
@@ -85,7 +91,22 @@ class TurtleBot():
 if __name__ == '__main__':
 
     try:
+
         bot = TurtleBot()
-        bot.move_to_goal()
+
+        # Way 1: Get param from cmd
+        # bot.move_to_goal()
+
+        # Way 2: Get param in launch file
+        x_goal = rospy.get_param("x_goal")
+        y_goal = rospy.get_param("y_goal")
+        distance_tolerance = rospy.get_param("distance_tolerance")
+        # Note: print() need declare output = "screen" in launch file
+        print("Get param from launch file:\n x_goal: %s, y_goal: %s, Distance tolerance: %s" % (
+            x_goal, y_goal, distance_tolerance ))
+
+        bot.move_to_goal(x_goal, y_goal, distance_tolerance)
+
+        
     except rospy.ROSInterruptException:
         pass

@@ -1,0 +1,12 @@
+<launch>
+
+    <node name="turtlesim" pkg="turtlesim" type="turtlesim_node" />
+
+    <param name="x_goal" value="10" />
+    <param name="y_goal" value="1" />
+    <param name="distance_tolerance" value="0.01" />
+
+    <node name="move_go_to_goal" pkg="control_turtlesim" type="move_go_to_goal.py" 
+            output = "screen" />
+
+</launch>
