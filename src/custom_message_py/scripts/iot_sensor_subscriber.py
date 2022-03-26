@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import rospy
-from ros_essentials_cpp.msg import IoTSensor
+from custom_message_py.msg import IoTSensor
 
 def iot_sensor_callback(iot_sensor_message):
     rospy.loginfo("new IoT data received: (%d, %s, %.2f ,%.2f)", 
