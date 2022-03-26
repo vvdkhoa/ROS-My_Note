@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # license removed for brevity
 import rospy
-from ros_essentials_cpp.msg import IoTSensor
+from custom_message_py.msg import IoTSensor
 import random
 
 #create a new publisher. we specify the topic name, then type of message then the queue size
